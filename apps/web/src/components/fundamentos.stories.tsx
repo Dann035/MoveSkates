@@ -13,63 +13,50 @@ export default meta;
 type Story = StoryObj;
 
 /**
- * `blanco` es el ratio del tono de acción sobre `--surface`, que es el que
- * publica el traspaso de diseño. `pastel` es el mismo tono sobre la superficie
- * **de su propia familia**, que es como lo usan etiqueta, chip activo, aviso y
- * banda de ahorro — y ese no estaba medido.
+ * Marca monocroma: el único color de marca es el rojo (acción y promoción).
+ * Socio, cupón e info se expresan en negro/gris y se distinguen por icono y
+ * jerarquía, no por color. El error es un rojo más oscuro que el de marca.
  *
- * Primario y coral no llegaban a 4.5 ahí, así que tienen un tono corregido
- * (`--primary-on-surface`, `--promo-on-surface`) y es el que se pinta en esta
- * columna. Ver el bloque de globals.css.
+ * El contraste de cada familia (acción sobre superficie y sobre su pastel) se
+ * valida con el addon de accesibilidad (axe) en estas mismas stories; por eso
+ * aquí no se publican ratios medidos a mano.
  */
 const FAMILIAS = [
   {
-    nombre: "Verde salvia · primario",
+    nombre: "Rojo · primario",
     uso: "Marca, CTA principal, añadir a la cesta, confirmaciones",
-    blanco: "4.99",
-    pastel: "4.62",
-    corregido: true,
     superficie: "bg-primary-surface",
     borde: "border-primary-border",
     accion: "bg-primary",
     texto: "text-primary-on-surface",
   },
   {
-    nombre: "Coral · promoción",
+    nombre: "Rojo · promoción",
     uso: "3x2, 2ª al 50 %, bajadas de precio, ahorro",
-    blanco: "4.66",
-    pastel: "4.61",
-    corregido: true,
     superficie: "bg-promo-surface",
     borde: "border-promo-border",
     accion: "bg-promo",
     texto: "text-promo-on-surface",
   },
   {
-    nombre: "Malva · socio",
-    uso: "Tarjeta de socia, precio de socia, cuota",
-    blanco: "6.54",
-    pastel: "5.54",
+    nombre: "Negro · socio",
+    uso: "Tarjeta de socio, precio de socio, cuota",
     superficie: "bg-member-surface",
     borde: "border-member-border",
     accion: "bg-member",
     texto: "text-member",
   },
   {
-    nombre: "Miel · cupón",
+    nombre: "Gris oscuro · cupón",
     uso: "Cupones, umbrales, prorrateo",
-    blanco: "6.37",
-    pastel: "5.75",
     superficie: "bg-coupon-surface",
     borde: "border-coupon-border",
     accion: "bg-coupon",
     texto: "text-coupon",
   },
   {
-    nombre: "Azul · información",
+    nombre: "Gris · información",
     uso: "Entrega, avisos neutros, estado de pedido",
-    blanco: "6.50",
-    pastel: "5.69",
     superficie: "bg-info-surface",
     borde: "border-info-border",
     accion: "bg-info",
@@ -78,8 +65,6 @@ const FAMILIAS = [
   {
     nombre: "Rojo · error",
     uso: "Validación, sin stock, cupón caído, borrar",
-    blanco: "6.54",
-    pastel: "5.63",
     superficie: "bg-destructive-surface",
     borde: "border-destructive-border",
     accion: "bg-destructive",
@@ -88,13 +73,13 @@ const FAMILIAS = [
 ];
 
 const NEUTROS = [
-  ["Fondo de página", "bg-background", "#FDFCFB"],
+  ["Fondo de página", "bg-background", "#FAFAFA"],
   ["Superficie", "bg-surface", "#FFFFFF"],
-  ["Superficie hundida", "bg-surface-sunken", "#F4F2EF"],
-  ["Borde", "bg-border", "#E6E2DC"],
-  ["Borde fuerte", "bg-border-strong", "#C9C3BA"],
-  ["Texto secundario", "bg-muted-foreground", "#5B6B62"],
-  ["Texto principal", "bg-foreground", "#1C2B24"],
+  ["Superficie hundida", "bg-surface-sunken", "#F4F4F5"],
+  ["Borde", "bg-border", "#E4E4E7"],
+  ["Borde fuerte", "bg-border-strong", "#A1A1AA"],
+  ["Texto secundario", "bg-muted-foreground", "#52525B"],
+  ["Texto principal", "bg-foreground", "#18181B"],
 ];
 
 const Seccion = ({
@@ -125,12 +110,6 @@ export const Color: Story = {
         nota="Cada familia tiene tres piezas: superficie, borde y acción. Un pastel nunca lleva texto encima ni pinta un botón primario. El color identifica el tipo de ventaja, no decora."
       >
         <div className="flex flex-col gap-3">
-          <div className="flex gap-6 px-4 text-[11px] font-bold tracking-wide text-muted-foreground uppercase">
-            <span className="flex-1">Familia</span>
-            <span className="w-20 text-right">Sobre blanco</span>
-            <span className="w-20 text-right">Sobre pastel</span>
-          </div>
-
           {FAMILIAS.map((f) => (
             <div
               key={f.nombre}
@@ -138,36 +117,17 @@ export const Color: Story = {
             >
               <div className={`size-12 shrink-0 rounded-control ${f.accion}`} />
               <div className="min-w-52 flex-1">
-                <p className={`font-bold ${f.texto}`}>
-                  {f.nombre}
-                  {f.corregido && (
-                    <span className="ml-2 font-normal text-muted-foreground">
-                      · tono corregido sobre pastel
-                    </span>
-                  )}
-                </p>
+                <p className={`font-bold ${f.texto}`}>{f.nombre}</p>
                 <p className="text-[13px] text-muted-foreground">{f.uso}</p>
               </div>
-              <p className="cifras w-20 text-right text-sm font-bold text-foreground">
-                {f.blanco}
-              </p>
-              <p className={`cifras w-20 text-right text-sm font-bold ${f.texto}`}>
-                {f.pastel}
-              </p>
             </div>
           ))}
-
-          <p className="mt-1 text-[13px] text-muted-foreground">
-            El traspaso de diseño publica solo la primera columna. La segunda es
-            la que gobierna etiqueta, chip activo, aviso y banda de ahorro, y en
-            primario y coral no llegaba a 4.5:1 con el tono original.
-          </p>
         </div>
       </Seccion>
 
       <Seccion
-        titulo="Neutros cálidos"
-        nota="Nunca grises fríos. La elevación se tinta con el verde tinta del texto, no con negro."
+        titulo="Neutros fríos"
+        nota="Grises fríos neutros. La elevación usa una sombra neutra, sin tinte de color."
       >
         <div className="flex flex-wrap gap-3">
           {NEUTROS.map(([nombre, clase, hex]) => (
@@ -192,7 +152,7 @@ export const Tipografia: Story = {
     <div className="flex flex-col gap-10 p-2">
       <Seccion
         titulo="Escala"
-        nota="Plus Jakarta Sans para titulares, cifras, precios e importes. Inter para interfaz, cuerpo y formularios."
+        nota="Archivo para titulares, cifras, precios e importes. Inter para interfaz, cuerpo y formularios."
       >
         <div className="flex flex-col gap-3">
           {[
@@ -211,7 +171,7 @@ export const Tipografia: Story = {
                 {etiqueta}
               </span>
               <span className={`font-display font-extrabold ${clase}`}>
-                Leche entera 1 L
+                Patines RB Cruiser
               </span>
             </div>
           ))}
@@ -251,7 +211,7 @@ export const FormaYElevacion: Story = {
           {[
             ["Control", "rounded-control", "8 · botón, input, miniatura"],
             ["Tarjeta", "rounded-card", "12 · tarjeta, tabla"],
-            ["Panel", "rounded-panel", "16 · modal, tarjeta de socia"],
+            ["Panel", "rounded-panel", "16 · modal, tarjeta de socio"],
             ["Pastilla", "rounded-pill", "999 · etiqueta, chip, avatar"],
           ].map(([nombre, clase, nota]) => (
             <div key={nombre} className="w-48">
@@ -267,7 +227,7 @@ export const FormaYElevacion: Story = {
 
       <Seccion
         titulo="Elevación"
-        nota="Tres niveles, siempre tintados de verde tinta (#1C2B24), nunca negro puro."
+        nota="Tres niveles, con una sombra neutra (gris carbón, #18181B), sin tinte de color."
       >
         <div className="flex flex-wrap gap-6">
           {[

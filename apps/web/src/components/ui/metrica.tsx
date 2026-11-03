@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  * 10), etiqueta 13/600, valor 30/800, variación 12/600.
  *
  * La usan el panel de administración (ADM-08: referencias activas, borradores,
- * promociones vigentes, sin stock) y el panel de socia (ARE-02: ahorro
+ * promociones vigentes, sin stock) y el panel de socio (ARE-02: ahorro
  * acumulado).
  */
 const metricaVariants = tv({

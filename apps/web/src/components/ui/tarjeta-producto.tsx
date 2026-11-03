@@ -27,7 +27,7 @@ export interface TarjetaProductoProps
    * tenga que saber de dominios remotos ni de tamaños.
    */
   imagen?: React.ReactNode;
-  /** Promoción, novedad, precio de socia… Se pintan sobre la imagen. */
+  /** Promoción, novedad, precio de socio… Se pintan sobre la imagen. */
   distintivos?: DistintivoProducto[];
   /** CAT-03: se sigue viendo, pero no se puede añadir a la cesta. */
   sinStock?: boolean;

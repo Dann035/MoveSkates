@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  * Resumen del pedido · tablero 02. Padding 24, hueco 18, radio de tarjeta.
  *
  * §9.3 del diseño: el resumen desglosa **promoción por promoción**, el
- * descuento de socia aparte, el IVA por tipo, y el ahorro total. Ese desglose
+ * descuento de socio aparte, el IVA por tipo, y el ahorro total. Ese desglose
  * es el que hace auditable el motor: si aquí solo llegara un número, no habría
  * forma de comprobar qué aplicó el cálculo ni en qué orden.
  *
@@ -34,7 +34,7 @@ const conceptoVariants = tv({
 });
 
 export interface LineaResumen {
-  /** «3x2 · Leche entera 1 L», «IVA 4 % · alimentos básicos». */
+  /** «3x2 · Patines RB Cruiser», «IVA 21 % · material deportivo». */
   concepto: React.ReactNode;
   /** Importe de la línea. Negativo para un descuento. */
   importe?: Importe;
@@ -52,7 +52,7 @@ export interface ResumenPedidoProps extends React.ComponentProps<"section"> {
   /** «Subtotal (12 productos)». */
   conceptoSubtotal: React.ReactNode;
   subtotal: Importe;
-  /** Promociones de producto, descuento de socia y cupón, una por línea. */
+  /** Promociones de producto, descuento de socio y cupón, una por línea. */
   ventajas?: LineaResumen[];
   /** Base imponible e IVA por tipo. */
   impuestos?: LineaResumen[];

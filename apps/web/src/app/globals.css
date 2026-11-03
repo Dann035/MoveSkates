@@ -1,0 +1,199 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* ---------------------------------------------------------------------------
+   MoveSkate · Fundamentos
+   ---------------------------------------------------------------------------
+   Identidad de tienda de patines: ROJO (marca y acción), NEGRO y GRIS
+   (estructura y contenido), BLANCO (fondo). Estética urbana: neutros fríos,
+   contrastes marcados, radios angulosos.
+
+   Marca monocroma: a diferencia del sistema anterior (que daba un color
+   distinto a cada tipo de ventaja), aquí el único color de marca es el rojo.
+   El rojo marca acción, CTA y promoción. Socio, cupón e info se expresan en
+   negro/gris y se distinguen por ICONO y jerarquía, no por color. El error es
+   un rojo más oscuro que el de marca y siempre va con icono de alerta.
+
+   Objetivo de contraste: texto ≥ 4.5:1. Se verifica con axe en Storybook; si
+   un token no pasa, se oscurece hasta cruzar el umbral.
+
+   No hay modo oscuro todavía.
+   ------------------------------------------------------------------------- */
+
+:root {
+  /* --- Neutros fríos ---------------------------------------------------- */
+  --background: #fafafa; /* fondo de página */
+  --surface: #ffffff; /* tarjetas, barras */
+  --surface-sunken: #f4f4f5; /* cabeceras de tabla, zonas inertes */
+  --border: #e4e4e7;
+  --border-strong: #a1a1aa; /* inputs y controles */
+  --foreground: #18181b; /* texto principal · negro urbano */
+  --muted-foreground: #52525b; /* texto secundario · ~7:1 sobre blanco */
+
+  /* --- Familias ---------------------------------------------------------
+     Cada familia tiene superficie (fondo), borde (contorno) y acción (texto,
+     icono, relleno). Un pastel nunca lleva texto encima sin su tono *-on-surface.
+     -------------------------------------------------------------------- */
+
+  /* Rojo · primario · marca, CTA, cesta, acción */
+  --primary: #c1121f;
+  --primary-hover: #9a0e18;
+  --primary-foreground: #ffffff;
+  --primary-surface: #fde7e9;
+  --primary-border: #f3c3c8;
+  --primary-on-surface: #a20d18; /* rojo oscuro sobre su pastel */
+
+  /* Rojo · promoción · 3x2, 2ª al 50 %, ahorro.
+     Comparte el rojo de marca a propósito: la oferta es roja. Se distingue del
+     CTA por la forma (etiqueta/banda, no botón). */
+  --promo: #c1121f;
+  --promo-surface: #fde7e9;
+  --promo-border: #f3c3c8;
+  --promo-on-surface: #a20d18;
+
+  /* Negro · socio/club · tarjeta de socio, precio de socio, cuota.
+     El club es negro = premium/urbano. Se distingue de cupón/info por icono. */
+  --member: #18181b;
+  --member-surface: #f4f4f5;
+  --member-border: #d4d4d8;
+
+  /* Gris oscuro · cupón · cupones, umbrales, prorrateo */
+  --coupon: #3f3f46;
+  --coupon-surface: #f4f4f5;
+  --coupon-border: #d4d4d8;
+
+  /* Gris · información · entrega, avisos neutros, estado de pedido */
+  --info: #3f3f46;
+  --info-surface: #f4f4f5;
+  --info-border: #d4d4d8;
+
+  /* Rojo oscuro · error · validación, sin stock, cupón caído, borrar.
+     Más oscuro que la marca y siempre con icono de alerta. */
+  --destructive: #991b1b;
+  --destructive-foreground: #ffffff;
+  --destructive-surface: #fde7e9;
+  --destructive-border: #f3c3c8;
+
+  /* --- Forma · angulosa, urbana ---------------------------------------- */
+  --radius-control: 6px; /* botón, input, select, chip, miniatura */
+  --radius-card: 8px; /* tarjeta de producto, tarjeta de contenido, tabla */
+  --radius-panel: 12px; /* modal, portada, tarjeta de socio, panel lateral */
+  --radius-pill: 999px; /* etiqueta, chip de filtro, avatar, buscador */
+
+  /* --- Elevación · neutra, nunca tintada ------------------------------- */
+  --shadow-rest: 0 1px 2px 0 rgb(24 24 27 / 0.08);
+  --shadow-raised: 0 4px 12px 0 rgb(24 24 27 / 0.1);
+  --shadow-float: 0 12px 32px 0 rgb(24 24 27 / 0.14);
+
+  /* --- Puente para los primitivos de shadcn ----------------------------
+     shadcn exige estos nombres. Aquí solo apuntan a los tokens de arriba.
+     secondary es neutro (gris), no rojo, para no inundar la UI de color.
+     -------------------------------------------------------------------- */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--surface-sunken);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface-sunken);
+  --accent: var(--surface-sunken);
+  --accent-foreground: var(--foreground);
+  --input: var(--border-strong);
+  --ring: var(--primary);
+  --radius: var(--radius-control);
+}
+
+@theme inline {
+  /* Neutros */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* Familias */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-surface: var(--primary-surface);
+  --color-primary-border: var(--primary-border);
+  --color-primary-on-surface: var(--primary-on-surface);
+
+  --color-promo: var(--promo);
+  --color-promo-surface: var(--promo-surface);
+  --color-promo-border: var(--promo-border);
+  --color-promo-on-surface: var(--promo-on-surface);
+
+  --color-member: var(--member);
+  --color-member-surface: var(--member-surface);
+  --color-member-border: var(--member-border);
+
+  --color-coupon: var(--coupon);
+  --color-coupon-surface: var(--coupon-surface);
+  --color-coupon-border: var(--coupon-border);
+
+  --color-info: var(--info);
+  --color-info-surface: var(--info-surface);
+  --color-info-border: var(--info-border);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-surface: var(--destructive-surface);
+  --color-destructive-border: var(--destructive-border);
+
+  /* Puente shadcn */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Forma */
+  --radius-control: var(--radius-control);
+  --radius-card: var(--radius-card);
+  --radius-panel: var(--radius-panel);
+  --radius-pill: var(--radius-pill);
+
+  /* Elevación */
+  --shadow-rest: var(--shadow-rest);
+  --shadow-raised: var(--shadow-raised);
+  --shadow-float: var(--shadow-float);
+
+  /* Tipografía. Archivo (titulares, cifras, precios), Inter (UI y cuerpo) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+
+  /* Escala 12·14·16·18·20·24·30·36·44. 44 no existe en Tailwind y se añade. */
+  --text-display: 2.75rem;
+  --text-display--line-height: 1.1;
+
+  /* Rejilla: contenido de 1280 con márgenes de 40 */
+  --container-content: 80rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Cifras tabulares en todo lo que sea un importe o una cantidad. Sin esto
+     los precios de una columna no se alinean y la tabla deja de ser legible. */
+  .cifras {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}

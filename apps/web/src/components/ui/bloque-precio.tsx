@@ -28,7 +28,7 @@ const precioVariants = tv({
       normal: { actual: "text-foreground", centimos: "text-foreground" },
       /** Precio rebajado por una promoción del producto. */
       promo: { actual: "text-promo", centimos: "text-promo" },
-      /** Precio de socia. Malva, porque la ventaja viene de la cuota. */
+      /** Precio de socio. Negro, porque la ventaja viene de la cuota. */
       socio: { actual: "text-member", centimos: "text-member" },
     },
     tamano: {

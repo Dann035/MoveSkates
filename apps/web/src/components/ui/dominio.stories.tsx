@@ -3,16 +3,16 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { BloquePrecio } from "@/components/ui/bloque-precio";
 import { Etiqueta } from "@/components/ui/etiqueta";
 import { TarjetaProducto } from "@/components/ui/tarjeta-producto";
-import { TarjetaSocia } from "@/components/ui/tarjeta-socia";
+import { TarjetaSocio } from "@/components/ui/tarjeta-socio";
 
 const meta: Meta = { title: "02 · Componentes/Dominio/Identidad" };
 export default meta;
 type Story = StoryObj;
 
 /**
- * La familia identifica **el tipo de ventaja**, no decora. Coral es promoción
- * del producto, malva es condición de socia, miel es cupón. Si un día un cupón
- * sale en coral, quien lee el ticket deja de poder distinguir de un vistazo de
+ * La familia identifica **el tipo de ventaja**, no decora. Rojo es promoción
+ * del producto, negro es condición de socio, gris es cupón. Si un día un cupón
+ * sale en rojo, quien lee el ticket deja de poder distinguir de un vistazo de
  * dónde le viene cada descuento.
  */
 export const Etiquetas: Story = {
@@ -21,7 +21,7 @@ export const Etiquetas: Story = {
     <div className="flex flex-wrap gap-2">
       <Etiqueta familia="promo">3x2</Etiqueta>
       <Etiqueta familia="promo">2ª al 50 %</Etiqueta>
-      <Etiqueta familia="socio">Precio socia</Etiqueta>
+      <Etiqueta familia="socio">Precio socio</Etiqueta>
       <Etiqueta familia="cupon">Cupón 5 €</Etiqueta>
       <Etiqueta familia="entrega">Entrega hoy</Etiqueta>
       <Etiqueta familia="alerta">Sin stock</Etiqueta>
@@ -47,7 +47,7 @@ export const Precios: Story = {
           props: { importeAnterior: 2.49, variante: "promo" as const },
         },
         {
-          titulo: "Precio de socia",
+          titulo: "Precio de socio",
           props: { importeAnterior: 2.49, variante: "socio" as const },
         },
       ].map(({ titulo, props }) => (
@@ -80,7 +80,7 @@ export const Precios: Story = {
 
 const BASE = {
   marca: "Hacendado",
-  nombre: "Leche entera de vaca 1 L",
+  nombre: "Patines Rollerblade RB Cruiser",
   precio: {
     importe: 1.89,
     precioUnidad: { importe: 1.89, unidad: "L" as const },
@@ -100,7 +100,7 @@ export const TarjetasDeProducto: Story = {
 
       <TarjetaProducto
         {...BASE}
-        nombre="Judías verdes redondas extrafinas 400 g"
+        nombre="Ruedas Undercover 80mm (x4)"
         precio={{
           importe: 1.35,
           importeAnterior: 1.8,
@@ -115,14 +115,14 @@ export const TarjetasDeProducto: Story = {
 
       <TarjetaProducto
         {...BASE}
-        nombre="Aceite de oliva virgen extra 1 L"
+        nombre="Rodamientos Bones Reds (x16)"
         precio={{
           importe: 6.75,
           importeAnterior: 7.5,
           variante: "socio",
           precioUnidad: { importe: 6.75, unidad: "L" },
         }}
-        distintivos={[{ familia: "socio", texto: "Precio socia" }]}
+        distintivos={[{ familia: "socio", texto: "Precio socio" }]}
         cantidadEnCesta={3}
         maxPorPedido={12}
         onCambiarCantidad={() => {}}
@@ -131,7 +131,7 @@ export const TarjetasDeProducto: Story = {
 
       <TarjetaProducto
         {...BASE}
-        nombre="Salmón fresco en lomos 300 g"
+        nombre="Protecciones Triple Set"
         precio={{
           importe: 8.95,
           precioUnidad: { importe: 29.83, unidad: "kg" },
@@ -143,14 +143,14 @@ export const TarjetasDeProducto: Story = {
   ),
 };
 
-export const Socia: Story = {
-  name: "Tarjeta de socia",
+export const Socio: Story = {
+  name: "Tarjeta de socio",
   render: () => (
-    <TarjetaSocia
+    <TarjetaSocio
       className="max-w-sm"
-      nombre="Laura Marí Ferrer"
-      numeroSocia="4820 1193 0077"
-      sociaDesde="03 / 2021"
+      nombre="Dani Ríos"
+      numeroSocio="4820 1193 0077"
+      socioDesde="03 / 2021"
       cuota="12,00 € / año"
     />
   ),

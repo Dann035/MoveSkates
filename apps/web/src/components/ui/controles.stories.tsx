@@ -31,7 +31,7 @@ export const CamposDeTexto: Story = {
     <div className="grid max-w-4xl gap-6 sm:grid-cols-2">
       <CampoTexto
         etiqueta="Nombre del producto"
-        defaultValue="Leche entera 1 L"
+        defaultValue="Patines RB Cruiser"
         ayuda="Máximo 120 caracteres"
         obligatorio
       />
@@ -113,7 +113,7 @@ export const SelectoresDeCantidad: Story = {
           onCambiar={setN}
           onEliminar={() => setN(0)}
           max={12}
-          etiqueta="Leche entera 1 L"
+          etiqueta="Patines RB Cruiser"
         />
         <SelectorCantidad defaultValor={12} max={12} etiqueta="Tope alcanzado" />
         <SelectorCantidad defaultValor={1} tamano="sm" />

@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
  *
  * REGLA SEMÁNTICA, y no se negocia (diseño/README.md §3): la familia
  * identifica el **tipo de ventaja**, no decora. `promo` es promoción del
- * producto, `socio` es condición de socia, `cupon` es cupón del pedido. El día
- * que un cupón salga en coral, quien lee el ticket deja de poder distinguir de
+ * producto, `socio` es condición de socio, `cupon` es cupón del pedido. El día
+ * que un cupón salga en rojo, quien lee el ticket deja de poder distinguir de
  * un vistazo de dónde le viene cada descuento.
  *
  * Por eso las variantes se llaman por lo que significan y no por su color.
@@ -25,7 +25,7 @@ const etiquetaVariants = tv({
     familia: {
       /** 3x2, 2ª unidad al 50%, bajada de precio, ahorro. */
       promo: "bg-promo-surface border-promo-border text-promo-on-surface",
-      /** Precio de socia, ventaja que exige cuota activa. */
+      /** Precio de socio, ventaja que exige cuota activa. */
       socio: "bg-member-surface border-member-border text-member",
       /** Cupón del pedido, umbral, prorrateo. */
       cupon: "bg-coupon-surface border-coupon-border text-coupon",

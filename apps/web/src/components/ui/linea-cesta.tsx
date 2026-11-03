@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 /** Qué ventaja se aplicó a esta línea y cuánto descontó. */
 export interface VentajaAplicada {
   familia: EtiquetaProps["familia"];
-  /** «3x2», «Precio socia», «2ª al 50 %». */
+  /** «3x2», «Precio socio», «2ª al 50 %». */
   texto: string;
 }
 

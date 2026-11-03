@@ -1,23 +1,23 @@
-import { Leaf } from "lucide-react";
+import { Zap } from "lucide-react";
 import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
 /**
- * Tarjeta de socia · tablero 02. Panel con degradado malva (200°, #7C5CB0 →
- * #5A3F88), radio de panel, padding 24.
+ * Tarjeta de socio · panel del club. Degradado negro → rojo (200°, #18181b →
+ * #991b1b), radio de panel, padding 24.
  *
  * Es el único sitio del sistema donde se pinta un degradado y donde el texto
  * va en blanco: representa una tarjeta física, no una superficie de interfaz.
  */
 
 /**
- * Anchos de barra a partir del número de socia.
+ * Anchos de barra a partir del número de socio.
  *
  * NO es un código de barras real: no codifica EAN-13 ni Code128, solo produce
  * un patrón estable para el mismo número. Escanearlo no devuelve nada. El día
- * que la tarjeta tenga que leerse en una caja, esto se sustituye por un
- * generador de verdad — y entonces el ancho deja de ser decorativo.
+ * que la tarjeta tenga que leerse en caja, esto se sustituye por un generador
+ * de verdad — y entonces el ancho deja de ser decorativo.
  */
 function anchosDeBarra(numero: string, cantidad = 58): number[] {
   const digitos = numero.replace(/\D/g, "") || "0";
@@ -31,34 +31,34 @@ function anchosDeBarra(numero: string, cantidad = 58): number[] {
   return anchos;
 }
 
-export interface TarjetaSociaProps extends React.ComponentProps<"div"> {
+export interface TarjetaSocioProps extends React.ComponentProps<"div"> {
   nombre: string;
   /** Con o sin espacios: se limpia para generar el patrón. */
-  numeroSocia: string;
+  numeroSocio: string;
   /** Ya formateado: «03 / 2021». */
-  sociaDesde: string;
+  socioDesde: string;
   /** Ya formateado: «12,00 € / año». */
   cuota: string;
   programa?: string;
 }
 
-export function TarjetaSocia({
+export function TarjetaSocio({
   nombre,
-  numeroSocia,
-  sociaDesde,
+  numeroSocio,
+  socioDesde,
   cuota,
-  programa = "Mercat Socios",
+  programa = "Club MoveSkate",
   className,
   ...props
-}: TarjetaSociaProps) {
-  const barras = anchosDeBarra(numeroSocia);
+}: TarjetaSocioProps) {
+  const barras = anchosDeBarra(numeroSocio);
 
   return (
     <div
-      data-slot="tarjeta-socia"
+      data-slot="tarjeta-socio"
       className={cn(
         "flex flex-col justify-between gap-5 rounded-panel p-6 text-white",
-        "bg-linear-[200deg,#7C5CB0_0%,#5A3F88_100%] shadow-raised",
+        "bg-linear-[200deg,#18181b_0%,#991b1b_100%] shadow-raised",
         className,
       )}
       {...props}
@@ -72,13 +72,13 @@ export function TarjetaSocia({
             {nombre}
           </p>
         </div>
-        <Leaf className="size-7 shrink-0 text-white/60" aria-hidden />
+        <Zap className="size-7 shrink-0 text-white/60" aria-hidden />
       </div>
 
       <div
         className="flex items-center gap-0.5 rounded-lg bg-white px-3 py-2.5"
         role="img"
-        aria-label={`Código de la tarjeta de socia ${numeroSocia}`}
+        aria-label={`Código de la tarjeta de socio ${numeroSocio}`}
       >
         {barras.map((ancho, i) => (
           <span
@@ -91,8 +91,8 @@ export function TarjetaSocia({
 
       <dl className="flex justify-between gap-6">
         {[
-          ["Nº de socia", numeroSocia],
-          ["Socia desde", sociaDesde],
+          ["Nº de socio", numeroSocio],
+          ["Socio desde", socioDesde],
           ["Cuota", cuota],
         ].map(([etiqueta, valor]) => (
           <div key={etiqueta} className="flex flex-col gap-0.5">

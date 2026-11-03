@@ -15,7 +15,7 @@ import { TarjetaCupon } from "@/components/ui/tarjeta-cupon";
  *
  * Todas las cifras de aquí son el **escenario 1** del enunciado del motor:
  * 3x2, segunda unidad al 50 %, cupón de 5 € sobre compras de 30 € y descuento
- * de socia del 5 %. Y el 3x2 tira el total por debajo de los 30 € que
+ * de socio del 5 %. Y el 3x2 tira el total por debajo de los 30 € que
  * activaban el cupón.
  */
 const meta: Meta = { title: "02 · Componentes/Dominio/El motor visible" };
@@ -29,7 +29,7 @@ export const EnLaCesta: Story = {
     <ul className="max-w-4xl">
       <LineaCesta
         marca="Hacendado"
-        nombre="Leche entera de vaca 1 L"
+        nombre="Patines Rollerblade RB Cruiser"
         cantidad={3}
         maxPorPedido={12}
         precioUnidad={{ importe: 1.89, unidad: "L" }}
@@ -41,7 +41,7 @@ export const EnLaCesta: Story = {
       />
       <LineaCesta
         marca="Hacendado"
-        nombre="Judías verdes redondas extrafinas 400 g"
+        nombre="Ruedas Undercover 80mm (x4)"
         cantidad={2}
         precioUnidad={{ importe: 4.5, unidad: "kg" }}
         importe={2.7}
@@ -52,12 +52,12 @@ export const EnLaCesta: Story = {
       />
       <LineaCesta
         marca="Hacendado"
-        nombre="Aceite de oliva virgen extra 1 L"
+        nombre="Rodamientos Bones Reds (x16)"
         cantidad={1}
         precioUnidad={{ importe: 6.75, unidad: "L" }}
         importe={6.75}
         importeAnterior={7.5}
-        ventajas={[{ familia: "socio", texto: "Precio socia" }]}
+        ventajas={[{ familia: "socio", texto: "Precio socio" }]}
         onCambiarCantidad={() => {}}
         onEliminar={() => {}}
       />
@@ -66,7 +66,7 @@ export const EnLaCesta: Story = {
 };
 
 /**
- * §9.3 — el resumen desglosa promoción por promoción, el descuento de socia
+ * §9.3 — el resumen desglosa promoción por promoción, el descuento de socio
  * aparte, el IVA por tipo y el ahorro total.
  *
  * Mira la línea del cupón: **no desaparece**. Se queda con «No aplica», porque
@@ -80,13 +80,13 @@ export const EnElResumen: Story = {
       conceptoSubtotal="Subtotal (12 productos)"
       subtotal={34.1}
       ventajas={[
-        { concepto: "3x2 · Leche entera 1 L", importe: -1.89, familia: "promo" },
+        { concepto: "3x2 · Patines RB Cruiser", importe: -1.89, familia: "promo" },
         {
-          concepto: "2ª al 50 % · Judías verdes",
+          concepto: "2ª al 50 % · Ruedas Undercover 80mm",
           importe: -0.9,
           familia: "promo",
         },
-        { concepto: "Descuento socia 5 %", importe: -1.57, familia: "socio" },
+        { concepto: "descuento socio 5 %", importe: -1.57, familia: "socio" },
         {
           concepto: "Cupón 5 € (mínimo 30 €)",
           nota: "No aplica",
@@ -95,7 +95,7 @@ export const EnElResumen: Story = {
       ]}
       impuestos={[
         { concepto: "Base imponible", importe: 27.15 },
-        { concepto: "IVA 4 % · alimentos básicos", importe: 0.64 },
+        { concepto: "IVA 21 % · material deportivo", importe: 0.64 },
         { concepto: "IVA 10 % · resto", importe: 1.95 },
       ]}
       total={29.74}
@@ -162,7 +162,7 @@ export const EnElTicket: Story = {
     <TablaTicket
       lineas={[
         {
-          producto: "Leche entera de vaca 1 L",
+          producto: "Patines Rollerblade RB Cruiser",
           unidades: 3,
           precio: 1.89,
           descuento: 1.89,
@@ -171,7 +171,7 @@ export const EnElTicket: Story = {
           total: 3.78,
         },
         {
-          producto: "Judías verdes redondas extrafinas 400 g",
+          producto: "Ruedas Undercover 80mm (x4)",
           unidades: 2,
           precio: 1.8,
           descuento: 0.9,
@@ -180,7 +180,7 @@ export const EnElTicket: Story = {
           total: 2.7,
         },
         {
-          producto: "Aceite de oliva virgen extra 1 L",
+          producto: "Rodamientos Bones Reds (x16)",
           unidades: 1,
           precio: 7.5,
           descuento: 0.75,
@@ -189,7 +189,7 @@ export const EnElTicket: Story = {
           total: 6.75,
         },
         {
-          producto: "Pan de payés 500 g",
+          producto: "Freno universal de repuesto",
           unidades: 2,
           precio: 1.35,
           base: 2.6,

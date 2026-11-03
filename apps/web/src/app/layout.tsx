@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Archivo, Inter } from "next/font/google";
 
 import "./globals.css";
 
@@ -10,23 +10,23 @@ const inter = Inter({
   display: "swap",
 });
 
-/** Titulares, cifras, precios, importes, valores de tabla. */
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+/** Titulares, cifras, precios, importes, valores de tabla. Estética urbana. */
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Mercat Socios",
-  description: "Supermercado con programa de socios",
+  title: "MoveSkate",
+  description: "Tienda de patines con club de socios",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${inter.variable} ${jakarta.variable} h-full antialiased`}
+      className={`${inter.variable} ${archivo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
